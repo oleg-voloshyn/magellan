@@ -189,10 +189,12 @@
   function render() {
     renderProgress();
     const today = todayIso();
-    let html = "";
+    // sections sort chronologically by key; a quest group goes after its last day when that day is the
+    // same city (Copenhagen quests after the half marathon), otherwise before it (Hanover before Berlin's 25th)
+    const sections = [];
     for (const d of trip.days) {
       const items = trip.items.filter((i) => !isMultiDay(i) && i.days[0] === d.date);
-      html += sectionHtml(d.label, d.title, items, d.date === today ? "today" : "");
+      sections.push({ key: `${d.date}|1`, html: sectionHtml(d.label, d.title, items, d.date === today ? "today" : "") });
     }
     // multi-day quests grouped by city + exact day range; an item's own `city` wins over its first day's
     const cityOf = (i) => i.city || (trip.days.find((d) => d.date === i.days[0]) || {}).city || "";
@@ -204,8 +206,15 @@
     });
     for (const [k, items] of groups) {
       const [city, days] = k.split("|");
-      html += sectionHtml(rangeLabel(days.split(",")), city ? `Побічні квести · ${city}` : "Побічні квести", items);
+      const last = days.split(",").slice(-1)[0];
+      const lastDay = trip.days.find((d) => d.date === last);
+      const after = !lastDay || !lastDay.city || lastDay.city === city;
+      sections.push({
+        key: `${last}|${after ? 2 : 0}`,
+        html: sectionHtml(rangeLabel(days.split(",")), city ? `Побічні квести · ${city}` : "Побічні квести", items),
+      });
     }
+    const html = sections.sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0)).map((s) => s.html).join("");
     document.getElementById("list").innerHTML = html;
     document.querySelectorAll("#filters button").forEach((b) => b.classList.toggle("on", b.dataset.f === ui.filter));
     document.getElementById("hide-done").checked = ui.hideDone;
