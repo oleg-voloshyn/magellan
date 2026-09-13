@@ -194,16 +194,17 @@
       const items = trip.items.filter((i) => !isMultiDay(i) && i.days[0] === d.date);
       html += sectionHtml(d.label, d.title, items, d.date === today ? "today" : "");
     }
-    // multi-day quests grouped by their exact day range
+    // multi-day quests grouped by city + exact day range; an item's own `city` wins over its first day's
+    const cityOf = (i) => i.city || (trip.days.find((d) => d.date === i.days[0]) || {}).city || "";
     const groups = new Map();
     trip.items.filter(isMultiDay).forEach((i) => {
-      const k = i.days.join(",");
+      const k = `${cityOf(i)}|${i.days.join(",")}`;
       if (!groups.has(k)) groups.set(k, []);
       groups.get(k).push(i);
     });
     for (const [k, items] of groups) {
-      const first = trip.days.find((d) => d.date === k.split(",")[0]);
-      html += sectionHtml(rangeLabel(k.split(",")), first && first.city ? `Побічні квести · ${first.city}` : "Побічні квести", items);
+      const [city, days] = k.split("|");
+      html += sectionHtml(rangeLabel(days.split(",")), city ? `Побічні квести · ${city}` : "Побічні квести", items);
     }
     document.getElementById("list").innerHTML = html;
     document.querySelectorAll("#filters button").forEach((b) => b.classList.toggle("on", b.dataset.f === ui.filter));
