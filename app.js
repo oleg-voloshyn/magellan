@@ -101,15 +101,19 @@
     }
   }
 
+  // checklist entries are either "text" or { text, how: ["detail line", ...] }
+  const entryText = (t) => (typeof t === "string" ? t : t.text);
+
   function checklistHtml(item, list) {
-    const keys = list.items.map((t) => subKey(item, list, t));
+    const keys = list.items.map((t) => subKey(item, list, entryText(t)));
     const done = keys.filter((k) => state.has(k)).length;
     return `<div class="clist">
       <div class="clist-head"><span>${fmt(list.title)}</span><span class="cnt">${done}/${keys.length}</span></div>
       ${list.note ? `<div class="clist-note">${fmt(list.note)}</div>` : ""}
       <ul>${list.items.map((t, i) => {
         const on = state.has(keys[i]);
-        return `<li class="${on ? "on" : ""}" data-key="${keys[i]}"><button class="check ${on ? "on" : ""}" aria-label="відмітити"></button><span>${fmt(t)}</span></li>`;
+        const how = typeof t === "string" || !t.how ? "" : `<ul class="how">${t.how.map((h) => `<li>${fmt(h)}</li>`).join("")}</ul>`;
+        return `<li class="${on ? "on" : ""}" data-key="${keys[i]}"><button class="check ${on ? "on" : ""}" aria-label="відмітити"></button><span><span class="ctext">${fmt(entryText(t))}</span>${how}</span></li>`;
       }).join("")}</ul>
     </div>`;
   }
@@ -195,7 +199,7 @@
     const urlEl = e.target.closest("[data-url]");
     if (urlEl) { e.preventDefault(); openUrl(urlEl.dataset.url); return; }
 
-    const li = e.target.closest(".clist li");
+    const li = e.target.closest(".clist li[data-key]");
     if (li) { setChecked(li.dataset.key, !state.has(li.dataset.key)); render(); return; }
 
     const check = e.target.closest(".head .check");

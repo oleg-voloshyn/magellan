@@ -111,7 +111,11 @@
   .clist li { display: flex; gap: 10px; align-items: flex-start; padding: 6px 0; cursor: pointer; }
   .clist li .check { width: 22px; height: 22px; border-radius: 6px; margin-top: 0; }
   .clist li .check.on::after { width: 5px; height: 10px; border-width: 0 2.5px 2.5px 0; }
-  .clist li.on span { color: var(--hint); text-decoration: line-through; }
+  .clist li.on .ctext { color: var(--hint); text-decoration: line-through; }
+  .clist li.on .how { opacity: .55; }
+  .clist ul.how { margin: 4px 0 2px; padding: 0; }
+  .clist ul.how li { display: block; padding: 2px 0; font-size: 13.5px; color: var(--hint); cursor: pointer; }
+  .clist ul.how li b { color: var(--text); font-weight: 600; }
   .tips { margin: 0; padding-left: 18px; }
   .tips li { margin: 4px 0; }
   .links a { color: var(--link); margin-right: 14px; text-decoration: none; font-weight: 500; }
