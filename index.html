@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Travel Quest</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+  :root {
+    --bg: var(--tg-theme-bg-color, #f4f4f6);
+    --card: var(--tg-theme-section-bg-color, var(--tg-theme-secondary-bg-color, #ffffff));
+    --text: var(--tg-theme-text-color, #16161a);
+    --hint: var(--tg-theme-hint-color, #8a8a93);
+    --link: var(--tg-theme-link-color, #2f7de1);
+    --accent: var(--tg-theme-button-color, #2f7de1);
+    --accent-text: var(--tg-theme-button-text-color, #ffffff);
+    --line: color-mix(in srgb, var(--hint) 22%, transparent);
+    --main: #e0a526;
+    --main-soft: color-mix(in srgb, #e0a526 16%, transparent);
+    --side: #8b6be8;
+    --side-soft: color-mix(in srgb, #8b6be8 15%, transparent);
+    --done: #34a853;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not(.tg) { --bg: #111114; --card: #1c1c21; --text: #ececf0; --hint: #8c8c96; }
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; background: var(--bg); color: var(--text);
+    font: 15px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  body { padding: 0 12px calc(24px + env(safe-area-inset-bottom)); max-width: 720px; margin: 0 auto; }
+  button { font: inherit; color: inherit; }
+  code { font-family: ui-monospace, Menlo, monospace; font-size: .9em;
+    background: var(--line); padding: 0 4px; border-radius: 4px; }
+
+  header { padding: 18px 4px 10px; }
+  h1 { font-size: 22px; margin: 0; letter-spacing: -.01em; }
+  .sub { color: var(--hint); margin-top: 2px; }
+
+  .progress { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 12px 0 10px; }
+  .pbox { background: var(--card); border-radius: 14px; padding: 10px 12px; }
+  .pbox .lbl { font-size: 12px; color: var(--hint); text-transform: uppercase; letter-spacing: .04em; }
+  .pbox .num { font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .bar { height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; margin-top: 6px; }
+  .bar i { display: block; height: 100%; border-radius: 3px; transition: width .3s; }
+  .pbox.main .bar i { background: var(--main); }
+  .pbox.side .bar i { background: var(--side); }
+
+  .filters { display: flex; gap: 6px; position: sticky; top: 0; z-index: 5;
+    background: var(--bg); padding: 8px 0; }
+  .filters button { flex: 1; border: 0; border-radius: 10px; padding: 8px 6px;
+    background: var(--card); font-weight: 600; font-size: 14px; }
+  .filters button.on { background: var(--accent); color: var(--accent-text); }
+  .toggle-done { display: flex; align-items: center; justify-content: flex-end; gap: 6px;
+    color: var(--hint); font-size: 13px; padding: 0 4px 4px; }
+
+  .info { background: var(--card); border-radius: 14px; margin: 4px 0 8px; }
+  .info summary { padding: 10px 12px; cursor: pointer; font-weight: 600; list-style: none; }
+  .info summary::-webkit-details-marker { display: none; }
+  .info ul { margin: 0; padding: 0 12px 12px 12px; list-style: none; }
+  .info li { padding: 4px 0; }
+
+  .day { margin-top: 18px; }
+  .day h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--hint);
+    margin: 0 4px 8px; display: flex; flex-direction: column-reverse; gap: 1px; font-weight: 600; }
+  .day h2 b { color: var(--text); text-transform: none; letter-spacing: 0; font-size: 17px; }
+  .day.today h2 b::after { content: " · сьогодні"; color: var(--accent); font-weight: 600; font-size: 13px; }
+  .empty { color: var(--hint); padding: 8px 4px; font-size: 14px; }
+
+  .card { background: var(--card); border-radius: 14px; margin-bottom: 8px; overflow: hidden;
+    border-left: 4px solid var(--side); }
+  .card.main { border-left-color: var(--main); }
+  .card.done { opacity: .62; }
+  .card.done .title { text-decoration: line-through; text-decoration-color: var(--hint); }
+  .head { display: flex; align-items: center; gap: 10px; padding: 12px 12px 12px 10px; cursor: pointer; }
+  .check { flex: none; width: 28px; height: 28px; border-radius: 8px; border: 2px solid var(--hint);
+    background: transparent; display: grid; place-items: center; padding: 0; cursor: pointer; }
+  .check.on { background: var(--done); border-color: var(--done); }
+  .check.on::after { content: ""; width: 7px; height: 13px; border: solid #fff; border-width: 0 3px 3px 0;
+    transform: rotate(45deg) translate(-1px, -1px); }
+  .htext { flex: 1; min-width: 0; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em;
+    padding: 1px 6px; border-radius: 6px; margin-bottom: 2px; }
+  .main .tag { background: var(--main-soft); color: var(--main); }
+  .side .tag { background: var(--side-soft); color: var(--side); }
+  .title { font-weight: 650; font-size: 16px; }
+  .meta { color: var(--hint); font-size: 13px; }
+  .chev { flex: none; color: var(--hint); transition: transform .2s; font-size: 18px; }
+  .card.open .chev { transform: rotate(90deg); }
+
+  .body { display: none; padding: 0 14px 14px; }
+  .card.open .body { display: block; }
+  .actions { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+  .btn { border: 0; border-radius: 10px; padding: 9px 12px; background: var(--accent); color: var(--accent-text);
+    font-weight: 600; font-size: 14px; cursor: pointer; }
+  .btn.ghost { background: var(--line); color: var(--text); }
+  .addr { color: var(--hint); font-size: 13px; margin: -4px 0 10px; }
+  .sec { margin-top: 12px; }
+  .sec h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--hint); margin: 0 0 6px; }
+  .sec p { margin: 0; white-space: pre-line; }
+  .hours { margin: 0; padding-left: 18px; }
+  .story { background: var(--main-soft); border-radius: 10px; padding: 10px 12px; }
+  .side .story { background: var(--side-soft); }
+
+  .clist { margin-top: 12px; border-top: 1px solid var(--line); padding-top: 10px; }
+  .clist-head { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 650; }
+  .clist-head .cnt { color: var(--hint); font-weight: 500; font-size: 13px; font-variant-numeric: tabular-nums; }
+  .clist-note { color: var(--hint); font-size: 13px; margin: 6px 0 2px; }
+  .clist ul { list-style: none; margin: 6px 0 0; padding: 0; }
+  .clist li { display: flex; gap: 10px; align-items: flex-start; padding: 6px 0; cursor: pointer; }
+  .clist li .check { width: 22px; height: 22px; border-radius: 6px; margin-top: 0; }
+  .clist li .check.on::after { width: 5px; height: 10px; border-width: 0 2.5px 2.5px 0; }
+  .clist li.on span { color: var(--hint); text-decoration: line-through; }
+  .tips { margin: 0; padding-left: 18px; }
+  .tips li { margin: 4px 0; }
+  .links a { color: var(--link); margin-right: 14px; text-decoration: none; font-weight: 500; }
+  .sync { text-align: center; color: var(--hint); font-size: 12px; margin-top: 20px; }
+</style>
+</head>
+<body>
+  <header>
+    <h1 id="title"></h1>
+    <div class="sub" id="subtitle"></div>
+    <div class="progress">
+      <div class="pbox main"><div class="lbl">◆ Сюжет</div><div class="num" id="p-main"></div><div class="bar"><i id="b-main"></i></div></div>
+      <div class="pbox side"><div class="lbl">✦ Квести</div><div class="num" id="p-side"></div><div class="bar"><i id="b-side"></i></div></div>
+    </div>
+  </header>
+  <details class="info" id="info"><summary>ℹ️ Корисне</summary><ul id="info-list"></ul></details>
+  <nav class="filters" id="filters">
+    <button data-f="all" class="on">Все</button>
+    <button data-f="main">◆ Сюжет</button>
+    <button data-f="side">✦ Квести</button>
+  </nav>
+  <label class="toggle-done"><input type="checkbox" id="hide-done"> сховати виконане</label>
+  <main id="list"></main>
+  <div class="sync" id="sync"></div>
+  <script src="trip.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
