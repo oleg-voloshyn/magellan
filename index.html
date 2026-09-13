@@ -116,6 +116,42 @@
   .clist ul.how { margin: 4px 0 2px; padding: 0; }
   .clist ul.how li { display: block; padding: 2px 0; font-size: 13.5px; color: var(--hint); cursor: pointer; }
   .clist ul.how li b { color: var(--text); font-weight: 600; }
+  .sk { display: flex; gap: 10px; align-items: flex-start; margin: 8px 0 4px; cursor: default; }
+  .skv { flex: none; width: 150px; height: auto; display: block; }
+  .skv.v { width: 112px; }
+  .sk-cap { display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; color: var(--hint); min-width: 0; }
+  .sk-cap b { color: var(--text); font-weight: 600; font-size: 13px; line-height: 1.3; }
+  .btn.sm { padding: 6px 10px; font-size: 13px; align-self: flex-start; }
+  .cams { display: flex; gap: 8px; margin-top: 5px; flex-wrap: wrap; cursor: default; }
+  .cam { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 11px; color: var(--hint); }
+  .camv { width: 44px; height: 33px; display: block; }
+  .sk-bg { fill: var(--bg); }
+  .sk-border { fill: none; stroke: var(--hint); stroke-opacity: .55; stroke-width: 1.5; }
+  .sk-grid { stroke: var(--hint); stroke-opacity: .35; stroke-dasharray: 3 3; stroke-width: 1; }
+  .sk-main { fill: var(--main); }
+  .sk-sec { fill: var(--side); fill-opacity: .85; }
+  .sk-soft { fill: var(--hint); fill-opacity: .16; }
+  .sk-soft.strong { fill-opacity: .32; }
+  .sk-bokeh { fill: var(--side); fill-opacity: .2; }
+  .sk-bokeh.strong { fill-opacity: .35; }
+  .sk-line { stroke: var(--main); stroke-width: 3; fill: none; stroke-linecap: round; }
+  .sk-guide { stroke: var(--hint); stroke-width: 1.5; fill: none; stroke-opacity: .75; stroke-linecap: round; }
+  .sk-axis { stroke: var(--accent); stroke-width: 1.5; stroke-dasharray: 5 4; }
+  .sk-arrow { stroke: var(--accent); stroke-width: 2; stroke-linecap: round; }
+  .sk-arrow-head { fill: var(--accent); }
+  .sk-horizon { stroke: var(--hint); stroke-width: 1.5; stroke-opacity: .8; }
+  .sk-water { fill: #3d8bfd; fill-opacity: .22; }
+  .sk-water.deep { fill-opacity: .45; }
+  .sk-sky { fill: #8ec5ff; fill-opacity: .16; }
+  .sk-sun { fill: #ffc53d; }
+  .sk-dark { fill: #0e0e12; stroke: var(--hint); stroke-opacity: .6; stroke-width: 1; }
+  .sk-glow { fill: #5ee0d0; fill-opacity: .35; }
+  .sk-light { fill: #fff6c8; }
+  .sk-inv-dot { fill: #1b1b1f; }
+  .sk-lbl { fill: var(--text); font: 600 8.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    paint-order: stroke; stroke: var(--bg); stroke-width: 3px; stroke-linejoin: round; }
+  .sk-lbl.sk-inv { fill: #1b1b1f; stroke: none; }
+  .sk-lbl.sk-s { font-size: 7px; }
   .tips { margin: 0; padding-left: 18px; }
   .tips li { margin: 4px 0; }
   .links a { color: var(--link); margin-right: 14px; text-decoration: none; font-weight: 500; }
@@ -141,6 +177,7 @@
   <main id="list"></main>
   <div class="sync" id="sync"></div>
   <script src="trip.js"></script>
+  <script src="sketch.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

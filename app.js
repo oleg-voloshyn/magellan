@@ -101,8 +101,22 @@
     }
   }
 
-  // checklist entries are either "text" or { text, how: ["detail line", ...] }
+  // checklist entries are either "text" or { text, how: ["detail line", ...], sketch?: {...}, ex?: "search query" }
   const entryText = (t) => (typeof t === "string" ? t : t.text);
+  const examplesUrl = (q) => `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(q)}`;
+
+  function sketchHtml(t) {
+    if (typeof t === "string" || (!t.sketch && !t.ex)) return "";
+    const sk = t.sketch && window.Sketch ? window.Sketch.render(t.sketch) : null;
+    return `<div class="sk">
+      ${sk ? sk.svg : ""}
+      <div class="sk-cap">
+        ${sk ? `<b>${esc(sk.title)}</b>` : ""}
+        ${t.sketch && t.sketch.lens ? `<span class="lens">🔭 ${esc(t.sketch.lens)}</span>` : ""}
+        ${t.ex ? `<button class="btn ghost sm" data-url="${esc(examplesUrl(t.ex))}">🔎 Приклади</button>` : ""}
+      </div>
+    </div>`;
+  }
 
   function checklistHtml(item, list) {
     const keys = list.items.map((t) => subKey(item, list, entryText(t)));
@@ -113,7 +127,8 @@
       <ul>${list.items.map((t, i) => {
         const on = state.has(keys[i]);
         const how = typeof t === "string" || !t.how ? "" : `<ul class="how">${t.how.map((h) => `<li>${fmt(h)}</li>`).join("")}</ul>`;
-        return `<li class="${on ? "on" : ""}" data-key="${keys[i]}"><button class="check ${on ? "on" : ""}" aria-label="відмітити"></button><span><span class="ctext">${fmt(entryText(t))}</span>${how}</span></li>`;
+        const extra = list.id === "video" && window.Sketch ? window.Sketch.cams(entryText(t)) : sketchHtml(t);
+        return `<li class="${on ? "on" : ""}" data-key="${keys[i]}"><button class="check ${on ? "on" : ""}" aria-label="відмітити"></button><span><span class="ctext">${fmt(entryText(t))}</span>${how}${extra}</span></li>`;
       }).join("")}</ul>
     </div>`;
   }
@@ -199,6 +214,7 @@
     const urlEl = e.target.closest("[data-url]");
     if (urlEl) { e.preventDefault(); openUrl(urlEl.dataset.url); return; }
 
+    if (e.target.closest(".sk, .cams")) return; // looking at a sketch shouldn't tick the shot
     const li = e.target.closest(".clist li[data-key]");
     if (li) { setChecked(li.dataset.key, !state.has(li.dataset.key)); render(); return; }
 
