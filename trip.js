@@ -19,7 +19,7 @@ window.TRIP = {
     { date: "2026-09-27", label: "Нд, 27 вересня", title: "Берлінський марафон", city: "Берлін" },
     { date: "2026-09-28", label: "Пн, 28 вересня", title: "Берлін → Лондон", city: "Лондон" },
     { date: "2026-09-29", label: "Вт, 29 вересня", title: "Грінвіч → Sky Garden → Пікаділлі", city: "Лондон" },
-    { date: "2026-09-30", label: "Ср, 30 вересня", title: "Вестмінстер пішки: палац → парк → абатство → Біг-Бен → Око → Трафальгар", city: "Лондон" },
+    { date: "2026-09-30", label: "Ср, 30 вересня", title: "Вестмінстер пішки → Трафальгар · увечері Outernet", city: "Лондон" },
   ],
 
   info: [
@@ -3750,6 +3750,82 @@ window.TRIP = {
       ],
       links: [
         { label: "Четвертий постамент зараз", url: "https://www.london.gov.uk/programmes-strategies/arts-and-culture/current-culture-projects/fourth-plinth-trafalgar-square/whats-fourth-plinth-now" },
+      ],
+    },
+    {
+      id: "ldn-outernet",
+      type: "main",
+      days: ["2026-09-30"],
+      emoji: "📺",
+      title: "Outernet London — зал, де екрани замість стін",
+      time: "Увечері, ~19:30–20:30 · 20–30 хв",
+      place: {
+        name: "Outernet London · The Now Building",
+        address: "Denmark Place / Denmark Street, London WC2H — на перехресті Oxford Street і Tottenham Court Road",
+        q: "Outernet London, Denmark Street, London",
+      },
+      transit: "Tube **Tottenham Court Road** (Central, Northern, Elizabeth line). Це не всередині станції — вихід **Exit 4**, і комплекс перед тобою; якщо вийшов не там — іди до Denmark Street.",
+      hours: [
+        "Щодня з 10:00 до пізнього вечора",
+        "Вхід безкоштовний, бронювання не потрібне",
+        "Конкретні шоу — за розкладом на сайті Outernet",
+      ],
+      description:
+        "Імерсивний район просто в центрі: **The Now Building** — чотириповерховий зал з LED-екранами по колу, де зображення перетікають зі стін на стелю, і **Now Arcade** — світловий LED-тунель. Показують цифрове мистецтво, природу, космос та інтерактивні шоу. Outernet називає себе найвідвідуванішою культурною атракцією Великої Британії.",
+      story:
+        "Outernet виріс на стику двох легендарних місць. Поруч — **Denmark Street**, лондонська «Tin Pan Alley»: у 1950–60-х тут сиділи музичні видавці й студії, записувалися Rolling Stones, а в будинку №6 жили Sex Pistols. А сам квартал перебудували після того, як для лінії Crossrail (тепер Elizabeth line) знесли старі будинки біля Tottenham Court Road, зокрема легендарний концертний зал Astoria. Замість нього тепер — екрани заввишки з будинок і концертні клуби під землею.",
+      checklists: [
+        {
+          id: "photo",
+          title: "📸 Фото",
+          items: [
+            "The Now Building — екрани на стінах і стелі",
+            "Світловий тунель Now Arcade",
+            "Ти силуетом на тлі екрана",
+            "Denmark Street з гітарними магазинами",
+          ],
+        },
+        {
+          id: "pro",
+          title: "📐 Проф фото",
+          items: [
+            { text: "Силует на тлі LED-стіни", sketch: { p: "silhouette", a: "ти", lens: "0.5–1x" }, ex: "Outernet London Now Building silhouette LED screens", how: [
+              "📍 Стань між камерою і найяскравішою стіною, друг знімає з 4–5 м",
+              "⚙️ Тап на екран і опусти експозицію — ти стаєш чорним силуетом, кольори насичені",
+              "🧭 Ти на нижній третині, екран займає решту кадру",
+            ] },
+            { text: "Стіна переходить у стелю", sketch: { p: "low", a: "LED стіна → стеля", lens: "0.5x" }, ex: "Outernet London immersive ceiling screens wide angle", how: [
+              "📍 Кут залу, камера вгору по діагоналі",
+              "🔭 **0.5x** — у кадрі і стіна, і стеля: видно, як зображення «загортається»",
+              "💡 Зроби кадри на різних сценах шоу — кольори змінюються кожні кілька хвилин",
+            ] },
+            { text: "Тунель Now Arcade", sketch: { p: "symmetry", a: "LED-тунель", lens: "0.5–1x" }, ex: "Now Arcade Outernet LED tunnel", how: [
+              "📍 На вході в тунель, по центру",
+              "🧭 Центральна симетрія — точка сходу посередині кадру",
+              "💡 Дочекайся, поки в тунелі одна людина — масштаб",
+            ] },
+          ],
+        },
+        {
+          id: "video",
+          title: "🎬 Кадри для відео",
+          items: [
+            "Вихід з метро Exit 4 → загальний план комплексу",
+            "Прохід у The Now Building — камера за спиною",
+            "Нахил камери знизу вгору: стіна → стеля",
+            "Прохід світловим тунелем Now Arcade — slow-mo",
+            "Таймлапс зміни шоу на екранах",
+            "Реакція-селфі в центрі залу",
+          ],
+        },
+      ],
+      tips: [
+        "Найкраще ввечері, але до ~20:00–21:00: навколо темніше, екрани ефектніші, а людей трохи менше, ніж у пік.",
+        "Маршрут вечора: Oxford Street → Outernet → Soho → Chinatown.",
+      ],
+      links: [
+        { label: "Outernet London", url: "https://www.outernet.com/" },
+        { label: "Як дістатися", url: "https://www.outernet.com/find-us" },
       ],
     },
   ],
