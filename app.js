@@ -202,7 +202,8 @@
       groups.get(k).push(i);
     });
     for (const [k, items] of groups) {
-      html += sectionHtml(rangeLabel(k.split(",")), "Побічні квести", items);
+      const first = trip.days.find((d) => d.date === k.split(",")[0]);
+      html += sectionHtml(rangeLabel(k.split(",")), first && first.city ? `Побічні квести · ${first.city}` : "Побічні квести", items);
     }
     document.getElementById("list").innerHTML = html;
     document.querySelectorAll("#filters button").forEach((b) => b.classList.toggle("on", b.dataset.f === ui.filter));
