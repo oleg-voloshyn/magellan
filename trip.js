@@ -4,8 +4,8 @@
 // days: один день ["2026-09-18"] або кілька днів, коли квест можна виконати будь-коли.
 
 window.TRIP = {
-  title: "Копенгаген → Гамбург → Ганновер → Берлін → Лондон",
-  subtitle: "18–30 вересня 2026 · WRRC 26 + Berlin Marathon",
+  title: "Копенгаген → Гамбург → Ганновер → Берлін → Лондон → Брістоль",
+  subtitle: "18 вересня – 3 жовтня 2026 · WRRC 26 + Berlin Marathon",
   days: [
     { date: "2026-09-18", label: "Пт, 18 вересня", title: "Експо і стартові пакети", city: "Копенгаген" },
     { date: "2026-09-19", label: "Сб, 19 вересня", title: "Миля + 5 км", city: "Копенгаген" },
@@ -20,6 +20,9 @@ window.TRIP = {
     { date: "2026-09-28", label: "Пн, 28 вересня", title: "Берлін → Лондон · Музей природознавства", city: "Лондон" },
     { date: "2026-09-29", label: "Вт, 29 вересня", title: "Букінгем (зміна варти) → Грінвіч → Sky Garden → Пікаділлі", city: "Лондон" },
     { date: "2026-09-30", label: "Ср, 30 вересня", title: "Вестмінстер пішки: парк → абатство → Біг-Бен → Око → Трафальгар · увечері Outernet", city: "Лондон" },
+    { date: "2026-10-01", label: "Чт, 1 жовтня", title: "Брістоль · маршрут Banksy", city: "Брістоль" },
+    { date: "2026-10-02", label: "Пт, 2 жовтня", title: "Брістоль", city: "Брістоль" },
+    { date: "2026-10-03", label: "Сб, 3 жовтня", title: "Брістоль", city: "Брістоль" },
   ],
 
   info: [
@@ -32,6 +35,7 @@ window.TRIP = {
     "🇩🇪 Берлін: захід сонця ~19:05, синя година ~19:10–19:40.",
     "🇬🇧 **Лондон.** Проїзд — просто прикладай банківську картку або телефон до турнікета (contactless), денна сума сама обмежується. Час на годину менший, ніж у Берліні.",
     "🇬🇧 Лондон: захід сонця ~18:50, синя година ~18:55–19:25.",
+    "🇬🇧 **Брістоль.** З Лондона — поїзд GWR з **Paddington** до **Bristol Temple Meads**, ~1 год 40 хв. Центр компактний, основне — пішки; автобуси приймають contactless. Захід сонця ~18:50.",
     "🆘 Екстрений номер — 112 (у Данії й Німеччині); у Великій Британії — 999 або 112.",
     "🎬 Правило монтажу: кожен обʼєкт — **3 плани**: загальний → середній → крупна деталь, по 3–5 секунд.",
     "📐 Камера перед поїздкою: увімкни **сітку** і **рівень** (Налаштування → Камера). Тап по об'єкту — фокус, потягни пальцем вниз — темніше, щоб не пересвітити небо. Протирай лінзу перед кожним важливим кадром.",
@@ -3922,6 +3926,124 @@ window.TRIP = {
       links: [
         { label: "Outernet London", url: "https://www.outernet.com/" },
         { label: "Як дістатися", url: "https://www.outernet.com/find-us" },
+      ],
+    },
+
+    // ───────────── Брістоль, 30 вересня – 3 жовтня ─────────────
+    {
+      id: "bri-banksy",
+      type: "main",
+      days: ["2026-10-01"],
+      emoji: "🐀",
+      title: "Banksy у Брістолі — 7 робіт пішки",
+      time: "Старт ~10:00 · 2,5–3 год · музеї до 17:00",
+      place: {
+        name: "Старт: The Girl with a Pierced Eardrum",
+        address: "Hanover Place / Sydney Row, Bristol BS1 6UU (Spike Island) → фініш на Thomas Street North, Stokes Croft",
+        q: "Hanover Place, Bristol BS1 6UU",
+      },
+      transit: "Маршрут пішки ~5–6 км, чистої ходьби трохи більше години. Від **Bristol Temple Meads** до старту ~25 хв пішки або таксі. Весь маршрут з усіма зупинками — кнопка «Маршрут Banksy у Google Maps» нижче.",
+      hours: [
+        "Вуличні роботи — будь-коли",
+        "**Grim Reaper** (M Shed) і **Paint Pot Angel** (Bristol Museum & Art Gallery) — лише коли музеї відкриті: **Вт–Нд 10:00–17:00, понеділок вихідний**",
+        "Обидва музеї безкоштовні",
+        "Карта оновлена в січні 2026 — роботи Banksy інколи замальовують або прибирають",
+      ],
+      description:
+        "Брістоль — рідне місто Banksy і одна з вуличних столиць світу: Lonely Planet включив його в Best in Travel 2026 саме за стріт-арт. Маршрут центром веде через сім його робіт — від пародії на Вермеєра на острові Spike Island до однієї з найраніших робіт художника у Stokes Croft.",
+      story:
+        "Banksy починав у Брістолі наприкінці 1990-х, ще до того, як перейшов на трафарети. «Mild Mild West» у Stokes Croft — одна з найраніших його відомих робіт — з'явилася як відповідь на поліцейські рейди проти нелегальних рейвів. У 2009 році Bristol Museum & Art Gallery таємно, навіть від власних працівників, підготував виставку «Banksy versus Bristol Museum» — на неї стояли багатогодинні черги, а від неї в музеї лишився лише «Paint Pot Angel». «Grim Reaper» 2003 року був намальований на борті нічного клубу-корабля Thekla — його вирізали й перенесли до M Shed, щоб уберегти від води й часу. А «Rose on a Mousetrap» місцеві мешканці самі скинулися й закрили склом у рамі. У Брістолі залишилось близько дюжини оригінальних Banksy — їх кількість змінюється, бо роботи замальовують або прибирають.",
+      checklists: [
+        {
+          id: "route",
+          title: "🗺 Маршрут Banksy",
+          items: [
+            { text: "1. The Girl with a Pierced Eardrum", how: [
+              "📍 Hanover Place / Sydney Row, BS1 6UU — Spike Island",
+              "2014 — пародія на «Дівчину з перловою сережкою» Вермеєра, де замість сережки — корпус охоронної сигналізації",
+            ] },
+            { text: "2. Grim Reaper", how: [
+              "📍 M Shed, Princes Wharf, Wapping Road, BS1 4RN — біля галереї Bristol Life",
+              "2003, з борту корабля Thekla · ⚠️ лише коли M Shed відкритий",
+            ] },
+            { text: "3. You Don't Need Planning Permission to Build Castles in the Sky", how: [
+              "📍 41 Lower Lamb Street, BS1 5QR — за Центральною бібліотекою",
+              "2011 · раніше вентиляційні решітки складались у «смайлик», але одну з них замурували",
+            ] },
+            { text: "4. Well Hung Lover", how: [
+              "📍 Frogmore Street — дивитися з мосту на **Park Street**, BS1 5HR",
+              "Мабуть, найвідоміший Banksy у Брістолі: голий коханець висить з вікна · кілька разів обливали фарбою",
+            ] },
+            { text: "5. Paint Pot Angel", how: [
+              "📍 Bristol Museum & Art Gallery, Queens Road, BS8 1RL — у передньому холі",
+              "2009, скульптура з виставки «Banksy versus Bristol Museum» · ⚠️ лише коли музей відкритий",
+            ] },
+            { text: "6. Mild Mild West", how: [
+              "📍 80 Stokes Croft, BS1 3QY",
+              "Кінець 1990-х — плюшевий ведмедик кидає коктейль Молотова в поліцейських",
+            ] },
+            { text: "7. Rose on a Mousetrap", how: [
+              "📍 Thomas Street North, BS2 8LX — Stokes Croft",
+              "Під склом у рамі, за яку заплатили місцеві мешканці",
+            ] },
+          ],
+        },
+        {
+          id: "photo",
+          title: "📸 Фото",
+          items: [
+            "Кожна з 7 робіт — для серії-каруселі",
+            "Ти поруч з «Дівчиною з пробитою барабанною перетинкою»",
+            "Well Hung Lover з Park Street",
+            "Стріт-арт Stokes Croft навколо",
+          ],
+        },
+        {
+          id: "pro",
+          title: "📐 Проф фото",
+          items: [
+            { text: "Well Hung Lover з мосту Park Street", sketch: { p: "thirds", side: "r", a: "мурал на стіні", b: "вулиця внизу", lens: "2–3x" }, ex: "Banksy Well Hung Lover Bristol Park Street", how: [
+              "📍 Міст на Park Street — мурал видно на торці будинку через дорогу",
+              "🔭 **2–3x** — вирізає сусідні вікна й дерева, мурал на весь кадр",
+              "🧭 Лиши трохи вулиці знизу — видно масштаб і контекст",
+            ] },
+            { text: "Мурал фронтально — серія в одному стилі", sketch: { p: "diptych", a: "робота №1", b: "робота №2", lens: "1x" }, ex: "Banksy Bristol murals series", how: [
+              "📍 Кожну роботу — строго фронтально, телефон паралельно стіні",
+              "🔭 Завжди **1x** — без спотворень країв; однакове кадрування для всієї серії",
+              "💡 Нумеруй у підписах 1/7 … 7/7 — ідеальна карусель",
+            ] },
+            { text: "Rose on a Mousetrap під склом", sketch: { p: "detail", a: "троянда в пастці", lens: "1–2x" }, ex: "Banksy Rose on a Mousetrap Bristol", how: [
+              "📍 Стань під невеликим кутом до скла — прямо в лоб буде твоє відображення",
+              "⚙️ Притисни об'єктив ближче до скла й прикрий долонею — відблиски зникнуть",
+            ] },
+            { text: "Stokes Croft — вулиця стріт-арту", sketch: { p: "leading", a: "Stokes Croft", b: "мурали", lens: "1x" }, ex: "Stokes Croft Bristol street art", how: [
+              "📍 Посередині тротуару вздовж вулиці",
+              "🧭 Лінія розписаних фасадів — провідна лінія вглиб кадру",
+              "💡 Перехожий на тлі муралів — живий акцент",
+            ] },
+          ],
+        },
+        {
+          id: "video",
+          title: "🎬 Кадри для відео",
+          items: [
+            "Вихід на Spike Island → загальний план першого муралу",
+            "Склейка: 7 робіт одна за одною в однаковому кадруванні",
+            "Прохід Stokes Croft — камера за спиною",
+            "Grim Reaper у музеї — нахил камери знизу вгору",
+            "Well Hung Lover з мосту — наближення",
+            "Текст на екрані: «7 Banksy. 1 місто. 3 години»",
+          ],
+        },
+      ],
+      tips: [
+        "Почни о ~10:00, щоб устигнути в обидва музеї до 17:00.",
+        "Порядок з маршруту: Spike Island → M Shed → Lower Lamb St → Park Street → Bristol Museum → Stokes Croft.",
+      ],
+      links: [
+        { label: "Маршрут Banksy у Google Maps", url: "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Hanover+Place,+Bristol+BS1+6UU&destination=Thomas+Street+North,+Bristol+BS2+8LX&waypoints=M+Shed,+Wapping+Road,+Bristol+BS1+4RN%7C41+Lower+Lamb+Street,+Bristol+BS1+5QR%7CPark+Street,+Bristol+BS1+5HR%7CBristol+Museum+%26+Art+Gallery,+Queens+Road,+Bristol+BS8+1RL%7C80+Stokes+Croft,+Bristol+BS1+3QY" },
+        { label: "Опис усіх 7 точок", url: "https://whatsdownthatstreet.com/2024/07/28/banksy-bristol-map/" },
+        { label: "Години M Shed", url: "https://www.bristolmuseums.org.uk/m-shed/plan-your-visit/opening-times/" },
       ],
     },
   ],
