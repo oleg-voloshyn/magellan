@@ -6,6 +6,7 @@
 window.TRIP = {
   title: "Копенгаген → Гамбург → Ганновер → Берлін → Лондон → Брістоль → Ньюпорт",
   subtitle: "18 вересня – 5 жовтня 2026 · WRRC 26 + Berlin Marathon + Cardiff Half",
+  switchTo: { label: "🇺🇸 Колумб · США", url: "https://oleg-voloshyn.github.io/magellan/columb/" },
   days: [
     { date: "2026-09-18", label: "Пт, 18 вересня", title: "Експо і стартові пакети", city: "Копенгаген" },
     { date: "2026-09-19", label: "Сб, 19 вересня", title: "Миля + 5 км", city: "Копенгаген" },

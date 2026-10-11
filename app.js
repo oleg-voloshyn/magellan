@@ -256,6 +256,13 @@
   // ── boot ──
   document.getElementById("title").textContent = trip.title;
   document.getElementById("subtitle").textContent = trip.subtitle || "";
+  if (trip.switchTo) {
+    document.getElementById("subtitle").insertAdjacentHTML(
+      "afterend",
+      `<button class="btn ghost sm switch" data-url="${esc(trip.switchTo.url)}">${esc(trip.switchTo.label)} ↗</button>`
+    );
+    document.querySelector(".switch").addEventListener("click", (e) => openUrl(e.currentTarget.dataset.url));
+  }
   document.getElementById("info-list").innerHTML = (trip.info || []).map((t) => `<li>${fmt(t)}</li>`).join("");
   document.getElementById("info").hidden = !(trip.info && trip.info.length);
   if (inTelegram && tg.setHeaderColor) tg.setHeaderColor("bg_color");

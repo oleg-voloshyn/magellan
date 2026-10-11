@@ -5,6 +5,7 @@
 window.TRIP = {
   title: "Колумб · США",
   subtitle: "12–24 листопада 2026 · Rocky Run + Philadelphia Marathon",
+  switchTo: { label: "🇩🇰 Магеллан · Європа", url: "https://oleg-voloshyn.github.io/magellan/" },
   days: [
     { date: "2026-11-12", label: "Чт, 12 листопада", title: "Варшава → Ньюарк · приліт", city: "Ньюарк" },
     { date: "2026-11-13", label: "Пт, 13 листопада", title: "Ньюарк → Філадельфія · стартові Rocky Run", city: "Філадельфія" },
