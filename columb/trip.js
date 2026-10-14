@@ -1976,6 +1976,7 @@ window.TRIP = {
         { label: "Карта парку", url: "https://www.centralparknyc.org/map" },
       ],
     },
+    {
       id: "nyc-brooklyn-bridge-run",
       type: "main",
       days: ["2026-11-18"],
